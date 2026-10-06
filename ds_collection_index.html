@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D&S Collection | Fashion & Beauty</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 10% 10%,#ffe0f0,transparent 30%),radial-gradient(circle at 90% 20%,#d9f5ff,transparent 30%),linear-gradient(135deg,#fff7fb,#f4f9ff);color:#222}
+header{background:linear-gradient(135deg,#7b1fa2,#e91e63,#ff9800);color:#fff;padding:22px 6%;box-shadow:0 5px 20px #0002;position:sticky;top:0;z-index:1000}
+.header-content{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo h1{font-size:30px}.logo p{margin-top:5px;font-size:14px;opacity:.9}
+.cart-button{border:0;background:#fff;color:#e91e63;padding:13px 20px;border-radius:30px;font-size:16px;font-weight:bold;cursor:pointer}
+.hero{max-width:1200px;margin:30px auto;padding:55px 25px;border-radius:30px;text-align:center;color:#fff;background:linear-gradient(135deg,#6a1b9a,#e91e63,#ff7043);box-shadow:0 15px 40px #781e7833}
+.hero h2{font-size:42px;margin-bottom:15px}.hero p{font-size:18px;margin-bottom:25px}
+.shop-now{display:inline-block;padding:14px 28px;background:#fff;color:#d81b60;border-radius:30px;font-weight:bold;text-decoration:none}
+.controls{max-width:1200px;margin:25px auto;padding:0 20px}
+.search{width:100%;padding:16px 20px;border:2px solid #eee;border-radius:30px;outline:0;font-size:16px;background:#fff;box-shadow:0 5px 15px #0000000d}
+.categories{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;justify-content:center}
+.category-btn{border:0;padding:10px 18px;border-radius:25px;background:#fff;cursor:pointer;font-weight:bold;color:#7b1fa2;box-shadow:0 3px 10px #00000014}
+.category-btn.active,.category-btn:hover{background:#e91e63;color:#fff}
+.products{max-width:1200px;margin:30px auto 60px;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px}
+.product{background:#fffffff2;border-radius:20px;overflow:hidden;box-shadow:0 8px 25px #00000014;transition:.25s;display:flex;flex-direction:column}
+.product:hover{transform:translateY(-7px);box-shadow:0 15px 35px #00000024}
+.product img{width:100%;height:220px;object-fit:cover}
+.product-info{padding:17px;display:flex;flex-direction:column;flex:1}
+.product-category{color:#e91e63;font-size:12px;font-weight:bold;text-transform:uppercase}
+.product h3{margin:7px 0;font-size:17px}.price{color:#7b1fa2;font-size:19px;font-weight:bold;margin:8px 0 14px}
+.add-btn{margin-top:auto;border:0;padding:12px;border-radius:25px;background:linear-gradient(135deg,#e91e63,#7b1fa2);color:#fff;font-weight:bold;cursor:pointer}
+.cart-panel{position:fixed;right:-430px;top:0;width:410px;max-width:95%;height:100vh;background:#fff;z-index:3000;box-shadow:-10px 0 30px #0003;transition:.3s;display:flex;flex-direction:column}
+.cart-panel.open{right:0}
+.cart-header{padding:20px;color:#fff;background:linear-gradient(135deg,#7b1fa2,#e91e63);display:flex;justify-content:space-between;align-items:center}
+.close-cart{background:0;border:0;color:#fff;font-size:25px;cursor:pointer}
+.cart-items{flex:1;overflow-y:auto;padding:15px}
+.cart-item{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid #eee}
+.cart-item img{width:65px;height:65px;object-fit:cover;border-radius:10px}
+.cart-item-info{flex:1}.cart-item-info h4{font-size:14px}
+.qty{display:flex;align-items:center;gap:8px;margin-top:7px}.qty button{width:25px;height:25px;border:0;border-radius:50%;background:#eee;cursor:pointer}
+.cart-bottom{padding:20px;border-top:1px solid #ddd}.total{display:flex;justify-content:space-between;font-size:20px;font-weight:bold;margin-bottom:15px}
+.checkout-btn,.order-btn{width:100%;border:0;padding:15px;border-radius:30px;color:#fff;font-size:16px;font-weight:bold;cursor:pointer}
+.checkout-btn{background:linear-gradient(135deg,#ff9800,#e91e63)}
+.checkout{display:none;position:fixed;inset:0;background:#000a;z-index:4000;overflow-y:auto;padding:30px 15px}
+.checkout-box{background:#fff;max-width:600px;margin:auto;padding:25px;border-radius:25px}
+.checkout-box h2{color:#7b1fa2;margin-bottom:15px}
+.checkout-box input,.checkout-box textarea{width:100%;padding:13px;margin:7px 0;border:1px solid #ddd;border-radius:10px;font-size:15px}
+.payment{margin:15px 0;padding:18px;border-radius:15px;background:linear-gradient(135deg,#fff0f6,#f3e5f5)}
+.payment h3{color:#e91e63;margin-bottom:8px}
+.order-btn{background:#25D366;margin-top:10px}.cancel-btn{width:100%;border:0;padding:12px;border-radius:30px;background:#eee;margin-top:8px;cursor:pointer}
+footer{background:#28132f;color:#fff;text-align:center;padding:35px 20px}
+@media(max-width:600px){.hero h2{font-size:30px}.header-content{flex-direction:column}.products{grid-template-columns:repeat(2,1fr);gap:12px}.product img{height:170px}.product-info{padding:12px}.product h3{font-size:14px}.price{font-size:16px}}
+</style>
+</head>
+<body>
+
+<header><div class="header-content">
+<div class="logo"><h1>✨ D&S Collection</h1><p>Fashion • Beauty • Style</p></div>
+<button class="cart-button" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+</div></header>
+
+<section class="hero">
+<h2>Welcome to D&S Collection</h2>
+<p>Discover beautiful bags, shoes, clothing & perfumes at amazing prices.</p>
+<a href="#products" class="shop-now">Shop Now</a>
+</section>
+
+<div class="controls">
+<input type="text" id="search" class="search" placeholder="🔎 Search products..." oninput="displayProducts()">
+<div class="categories">
+<button class="category-btn active" onclick="setCategory('All',this)">All</button>
+<button class="category-btn" onclick="setCategory('Bags',this)">👜 Bags</button>
+<button class="category-btn" onclick="setCategory('Shoes',this)">👠 Shoes</button>
+<button class="category-btn" onclick="setCategory('Tops',this)">👕 Tops</button>
+<button class="category-btn" onclick="setCategory('Perfumes',this)">🌸 Perfumes</button>
+</div></div>
+
+<section class="products" id="products"></section>
+
+<div class="cart-panel" id="cartPanel">
+<div class="cart-header"><h2>🛒 Your Cart</h2><button class="close-cart" onclick="closeCart()">×</button></div>
+<div class="cart-items" id="cartItems"></div>
+<div class="cart-bottom"><div class="total"><span>Total</span><span id="cartTotal">₦0</span></div>
+<button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button></div>
+</div>
+
+<div class="checkout" id="checkout"><div class="checkout-box">
+<h2>Complete Your Order</h2>
+<input id="customerName" placeholder="Your full name">
+<input id="customerPhone" placeholder="Your phone number">
+<textarea id="customerAddress" rows="3" placeholder="Delivery address"></textarea>
+
+<div class="payment"><h3>💳 Payment Details</h3>
+<p><strong>Bank:</strong> Opay</p>
+<p><strong>Account Number:</strong> 8127173414</p>
+<p><strong>Account Name:</strong> Olatunbosun Loveth Bose</p>
+<br><p>Make your payment to the account above, then send your order and payment confirmation.</p></div>
+
+<div id="checkoutSummary"></div>
+<button class="order-btn" onclick="sendOrder()">📱 Send Order on WhatsApp</button>
+<button class="cancel-btn" onclick="closeCheckout()">Cancel</button>
+</div></div>
+
+<footer><h2>D&S Collection</h2><p>Quality fashion and beauty products for every occasion.</p>
+<p style="margin-top:10px">👜 Bags • 👠 Shoes • 👕 Tops • 🌸 Perfumes</p>
+<p style="margin-top:20px">© 2026 D&S Collection</p></footer>
+
+<script>
+const products = [
+{name:"Elegant Ladies Handbag",category:"Bags",price:18000,image:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80"},
+{name:"Classic Black Handbag",category:"Bags",price:22000,image:"https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80"},
+{name:"Luxury Brown Bag",category:"Bags",price:25000,image:"https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=600&q=80"},
+{name:"Mini Fashion Bag",category:"Bags",price:15000,image:"https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=600&q=80"},
+{name:"Women Shoulder Bag",category:"Bags",price:19500,image:"https://images.unsplash.com/photo-1585488437740-9d0c6c9c8c88?auto=format&fit=crop&w=600&q=80"},
+{name:"Pink Ladies Bag",category:"Bags",price:17000,image:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80"},
+{name:"Designer Style Tote",category:"Bags",price:28000,image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"},
+{name:"Small Crossbody Bag",category:"Bags",price:14500,image:"https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=600&q=80"},
+{name:"Ladies Office Bag",category:"Bags",price:24000,image:"https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&w=600&q=80"},
+{name:"Elegant White Bag",category:"Bags",price:21000,image:"https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=600&q=80"},
+{name:"Luxury Chain Bag",category:"Bags",price:27000,image:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80"},
+{name:"Casual Everyday Bag",category:"Bags",price:16000,image:"https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80"},
+{name:"Fashion Backpack",category:"Bags",price:23000,image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"},
+{name:"Premium Ladies Purse",category:"Bags",price:12500,image:"https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=600&q=80"},
+{name:"Stylish Evening Bag",category:"Bags",price:20000,image:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80"},
+{name:"Classic Black Heels",category:"Shoes",price:18000,image:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80"},
+{name:"Elegant Nude Heels",category:"Shoes",price:20000,image:"https://images.unsplash.com/photo-1596703263926-eb0762ee17e4?auto=format&fit=crop&w=600&q=80"},
+{name:"Ladies Sneakers",category:"Shoes",price:22000,image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"},
+{name:"White Fashion Sneakers",category:"Shoes",price:24000,image:"https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=600&q=80"},
+{name:"Luxury Sandals",category:"Shoes",price:15000,image:"https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=600&q=80"},
+{name:"Flat Ladies Shoes",category:"Shoes",price:14000,image:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80"},
+{name:"Red Party Heels",category:"Shoes",price:21000,image:"https://images.unsplash.com/photo-1596703263926-eb0762ee17e4?auto=format&fit=crop&w=600&q=80"},
+{name:"Casual Slip-On Shoes",category:"Shoes",price:16500,image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"},
+{name:"Platform Heels",category:"Shoes",price:23000,image:"https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=600&q=80"},
+{name:"Luxury Women Sneakers",category:"Shoes",price:26000,image:"https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=600&q=80"},
+{name:"Classic Brown Sandals",category:"Shoes",price:13500,image:"https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=600&q=80"},
+{name:"Black Platform Shoes",category:"Shoes",price:19500,image:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80"},
+{name:"Fashion Trainers",category:"Shoes",price:22500,image:"https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=600&q=80"},
+{name:"Ladies Party Sandals",category:"Shoes",price:17500,image:"https://images.unsplash.com/photo-1596703263926-eb0762ee17e4?auto=format&fit=crop&w=600&q=80"},
+{name:"Elegant Gold Heels",category:"Shoes",price:25000,image:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80"},
+{name:"Classic White Top",category:"Tops",price:8500,image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80"},
+{name:"Ladies Black Top",category:"Tops",price:9000,image:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=600&q=80"},
+{name:"Elegant Pink Blouse",category:"Tops",price:11000,image:"https://images.unsplash.com/photo-1564257577054-0f3d6b8f8b2f?auto=format&fit=crop&w=600&q=80"},
+{name:"Casual Blue Top",category:"Tops",price:9500,image:"https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=600&q=80"},
+{name:"Floral Ladies Top",category:"Tops",price:12000,image:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80"},
+{name:"Elegant Satin Blouse",category:"Tops",price:13500,image:"https://images.unsplash.com/photo-1564257577054-0f3d6b8f8b2f?auto=format&fit=crop&w=600&q=80"},
+{name:"Long Sleeve Fashion Top",category:"Tops",price:10000,image:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=600&q=80"},
+{name:"Ladies Crop Top",category:"Tops",price:7500,image:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80"},
+{name:"Premium Cotton Top",category:"Tops",price:10500,image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80"},
+{name:"Red Fashion Blouse",category:"Tops",price:11500,image:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=600&q=80"},
+{name:"Elegant Green Top",category:"Tops",price:10000,image:"https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=600&q=80"},
+{name:"Chic Sleeveless Top",category:"Tops",price:8500,image:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80"},
+{name:"Office Blouse",category:"Tops",price:12500,image:"https://images.unsplash.com/photo-1564257577054-0f3d6b8f8b2f?auto=format&fit=crop&w=600&q=80"},
+{name:"Casual Graphic Top",category:"Tops",price:9000,image:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=600&q=80"},
+{name:"Luxury Chiffon Top",category:"Tops",price:14500,image:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80"},
+{name:"Floral Perfume",category:"Perfumes",price:12000,image:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"},
+{name:"Luxury Rose Perfume",category:"Perfumes",price:18000,image:"https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=600&q=80"},
+{name:"Classic Oud Perfume",category:"Perfumes",price:22000,image:"https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80"},
+{name:"Sweet Vanilla Perfume",category:"Perfumes",price:15000,image:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=600&q=80"},
+{name:"Elegant Women Perfume",category:"Perfumes",price:16500,image:"https://images.unsplash.com/photo-1563170351-be82bc888aa4?auto=format&fit=crop&w=600&q=80"},
+{name:"Luxury Gold Perfume",category:"Perfumes",price:25000,image:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"},
+{name:"Fresh Blossom Perfume",category:"Perfumes",price:13500,image:"https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&w=600&q=80"},
+{name:"Premium Musk Perfume",category:"Perfumes",price:19000,image:"https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=600&q=80"},
+{name:"Sweet Berry Perfume",category:"Perfumes",price:14000,image:"https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80"},
+{name:"Signature Collection Perfume",category:"Perfumes",price:28000,image:"https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80"},
+{name:"Classic Floral Mist",category:"Perfumes",price:11000,image:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"},
+{name:"Luxury Amber Perfume",category:"Perfumes",price:23000,image:"https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=600&q=80"},
+{name:"Elegant Blossom Scent",category:"Perfumes",price:17500,image:"https://images.unsplash.com/photo-1563170351-be82bc888aa4?auto=format&fit=crop&w=600&q=80"},
+{name:"Premium Oud Collection",category:"Perfumes",price:26000,image:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"},
+{name:"Everyday Fresh Perfume",category:"Perfumes",price:13000,image:"https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&w=600&q=80"}
+];
+
+let cart = [];
+let currentCategory = "All";
+
+function money(n) {
+  return "₦" + n.toLocaleString("en-NG");
+}
+
+function displayProducts() {
+  const search = document.getElementById("search").value.toLowerCase();
+  const container = document.getElementById("products");
+
+  const filtered = products.filter(p =>
+    (currentCategory === "All" || p.category === currentCategory) &&
+    p.name.toLowerCase().includes(search)
+  );
+
+  container.innerHTML = filtered.map((p,i) => {
+    const realIndex = products.indexOf(p);
+    return `
+      <article class="product">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        <div class="product-info">
+          <span class="product-category">${p.category}</span>
+          <h3>${p.name}</h3>
+          <div class="price">${money(p.price)}</div>
+          <button class="add-btn" onclick="addToCart(${realIndex})">🛒 Add to Cart</button>
+        </div>
+      </article>`;
+  }).join("");
+
+  if (!filtered.length) container.innerHTML =
+    "<p style='grid-column:1/-1;text-align:center;padding:40px'>No products found.</p>";
+}
+
+function setCategory(category, btn) {
+  currentCategory = category;
+  document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  displayProducts();
+}
+
+function addToCart(index) {
+  const existing = cart.find(item => item.index === index);
+  if (existing) existing.qty++;
+  else cart.push({index:index,qty:1});
+  updateCart();
+  openCart();
+}
+
+function updateCart() {
+  const items = document.getElementById("cartItems");
+  let total = 0;
+  let count = 0;
+
+  if (!cart.length) {
+    items.innerHTML = "<p style='text-align:center;padding:40px'>Your cart is empty.</p>";
+  } else {
+    items.innerHTML = cart.map(item => {
+      const p = products[item.index];
+      total += p.price * item.qty;
+      count += item.qty;
+
+      return `
+      <div class="cart-item">
+        <img src="${p.image}" alt="${p.name}">
+        <div class="cart-item-info">
+          <h4>${p.name}</h4>
+          <p>${money(p.price)}</p>
+          <div class="qty">
+            <button onclick="changeQty(${item.index},-1)">−</button>
+            <span>${item.qty}</span>
+            <button onclick="changeQty(${item.index},1)">+</button>
+            <button onclick="removeItem(${item.index})">🗑️</button>
+          </div>
+        </div>
+      </div>`;
+    }).join("");
+  }
+
+  document.getElementById("cartCount").textContent = count;
+  document.getElementById("cartTotal").textContent = money(total);
+}
+
+function changeQty(index, amount) {
+  const item = cart.find(x => x.index === index);
+  if (!item) return;
+  item.qty += amount;
+  if (item.qty <= 0) cart = cart.filter(x => x.index !== index);
+  updateCart();
+}
+
+function removeItem(index) {
+  cart = cart.filter(x => x.index !== index);
+  updateCart();
+}
+
+function openCart() {
+  document.getElementById("cartPanel").classList.add("open");
+}
+
+function closeCart() {
+  document.getElementById("cartPanel").classList.remove("open");
+}
+
+function openCheckout() {
+  if (!cart.length) {
+    alert("Please add at least one product to your cart.");
+    return;
+  }
+
+  closeCart();
+  const total = cart.reduce((sum,item) => sum + products[item.index].price * item.qty,0);
+
+  document.getElementById("checkoutSummary").innerHTML =
+    "<h3>Order Summary</h3>" +
+    cart.map(item => `<p>${products[item.index].name} × ${item.qty} — ${money(products[item.index].price * item.qty)}</p>`).join("") +
+    `<hr style="margin:10px 0"><p><strong>Total: ${money(total)}</strong></p>`;
+
+  document.getElementById("checkout").style.display = "block";
+}
+
+function closeCheckout() {
+  document.getElementById("checkout").style.display = "none";
+}
+
+function sendOrder() {
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
+
+  if (!name || !phone || !address) {
+    alert("Please fill in your name, phone number and delivery address.");
+    return;
+  }
+
+  const total = cart.reduce((sum,item) => sum + products[item.index].price * item.qty,0);
+
+  let message = `Hello D&S Collection!%0A%0AI want to place an order.%0A%0A`;
+  message += `Customer: ${name}%0APhone: ${phone}%0AAddress: ${address}%0A%0A`;
+  message += `ORDER:%0A`;
+
+  cart.forEach(item => {
+    const p = products[item.index];
+    message += `- ${p.name} x ${item.qty} = ${money(p.price * item.qty)}%0A`;
+  });
+
+  message += `%0ATotal: ${money(total)}%0A%0A`;
+  message += `Payment: Opay%0AAccount: 8127173414%0AAccount Name: Olatunbosun Loveth Bose`;
+
+  /*
+    Replace the number below with YOUR WhatsApp/business number.
+    Include country code without +.
+    Example Nigeria: 2348012345678
+  */
+  const whatsappNumber = "2347078762540";
+
+  window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+}
+
+displayProducts();
+updateCart();
+</script>
+</body>
+</html>
